@@ -31,13 +31,13 @@ const doctorschema = new mongoose.Schema({
     
 });
 
-doctorschema.pre("save", async function(next) { 
-    if(!this.isModified("workerPassword")) return next();
+doctorschema.pre("save", async function() { 
+    if(!this.isModified("workerPassword")) return;
 
     const salt = await bcrypt.genSalt(10);
     this.workerPassword = await bcrypt.hash(this.workerPassword, salt);
 
-    next();
+    
     
 })
 

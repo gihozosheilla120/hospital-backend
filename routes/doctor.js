@@ -20,7 +20,8 @@ router.post("/doctor", async(req, res) => {
 
     }
     catch(error){
-    res.status(500).json("Doctor not saved well");
+    console.error(error);
+    res.status(500).json(error.message)
 
     }
 });

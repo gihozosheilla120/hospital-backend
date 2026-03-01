@@ -34,13 +34,13 @@ const nurseschema = new mongoose.Schema({
 
 });
 
-nurseschema.pre("save", async function(next){
+nurseschema.pre("save", async function(){
     if(!this.isModified("workerPassword"))
-      return  next();
+      return;
     
     const salt = await bcrypt.genSalt(10);
     this.workerPassword = await bcrypt.hash(this.workerPassword,salt);
-    next();
+    
 })
 
 module.exports = new mongoose.model("nurse", nurseschema);
