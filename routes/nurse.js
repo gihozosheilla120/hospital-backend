@@ -10,11 +10,11 @@ const Nurse = require("../model/nurse");
 const router = express.Router();
 
 
-router.post("./nurse/login", async(req,res) => {
+router.post("/nurse/login", async(req,res) => {
     try{
         const {workerId, workerPassword} = req.body;
 
-        const nurse = await Nurse.findOne({workerID});
+        const nurse = await Nurse.findOne({workerId});
         if(!nurse) return res.status(403).json({message:"the nurse was not found"});
 
         const isMatch = await bcrypt.compare(workerPassword, nurse.workerPassword);
