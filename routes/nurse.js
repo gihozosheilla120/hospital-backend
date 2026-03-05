@@ -21,10 +21,12 @@ router.post("/nurse/login", async(req,res) => {
         if(!isMatch)return res.status(403).json({message:"invalid credentials"});
 
         const token = jwt.sign(
-            {id:nurse._id, workerPassword:nurse.workerPassword, workerId:nurse.workerID},
+            {id:nurse._id, workerId:nurse.workerId},
             process.env.JWT_SECRET,
             {expiresIn:"1h"}
         );
+
+       return res.status(200).json({message:"login successful", token})
     }
     catch(error){
         console.error(error);

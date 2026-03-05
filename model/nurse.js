@@ -8,7 +8,7 @@ const nurseschema = new mongoose.Schema({
         maxlength:50,
         trim:true,
         minlength:2,
-         match: /^[A-Za-z\s]+$/
+        match: /^[A-Za-z\s]+$/
     },
     gender:{
         type: String,
